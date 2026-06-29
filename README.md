@@ -11,28 +11,47 @@ NephroAlert is an AI-powered CKD (Chronic Kidney Disease) progression monitoring
 ## Quick Start
 
 ### Prerequisites
-- Node.js 18+
-- MongoDB (local or Atlas connection string)
+- **Java 17+** (JDK)
+- **Maven 3.9+**
+- **MySQL 8.0+** (or MySQL Workbench)
+- **Node.js 18+** (for frontend)
 
-### Setup
+### Database Setup (MySQL Workbench)
+
+1. Open MySQL Workbench
+2. Create a new schema/database:
+```sql
+CREATE DATABASE nephroalert;
+```
+3. The application will auto-create all tables on first run (`spring.jpa.hibernate.ddl-auto=update`)
+
+### Backend Setup (Spring Boot)
 
 ```bash
-# 1. Install all dependencies
+cd server
+
+# Configure database connection (edit if needed)
+# src/main/resources/application.properties
+# spring.datasource.username=root
+# spring.datasource.password=root
+
+# Run the server
+mvn spring-boot:run
+```
+
+Server starts on **http://localhost:5000**
+
+On first run, the database auto-seeds with 8 demo patients.
+
+### Frontend Setup (React + Vite)
+
+```bash
+cd client
 npm install
-cd server && npm install
-cd ../client && npm install
-cd ..
-
-# 2. Configure environment
-# Edit .env file with your MongoDB URI
-# Default: mongodb://localhost:27017/nephroalert
-
-# 3. Run both server and client
 npm run dev
 ```
 
-- **Server:** http://localhost:5000
-- **Client:** http://localhost:5173
+Client starts on **http://localhost:5173**
 
 ### Demo Credentials
 ```
@@ -40,7 +59,18 @@ Email:    demo@nephroalert.com
 Password: Demo@123
 ```
 
-The database auto-seeds with 8 demo patients (varied risk levels) on first run.
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 18, Vite, Tailwind CSS, Recharts, Framer Motion |
+| Backend | **Java 17, Spring Boot 3.2, Spring Security, Spring Data JPA** |
+| Database | **MySQL 8.0** (via MySQL Workbench) |
+| ML/AI | Custom scoring algorithm (Java) — no Python dependency |
+| Auth | JWT (jjwt) with BCrypt password hashing |
+| Build | Maven |
 
 ---
 
@@ -55,38 +85,34 @@ The database auto-seeds with 8 demo patients (varied risk levels) on first run.
 - **PDF Report Export** — Generate professional patient reports for referrals
 - **Research Data Export** — Anonymized CSV download for research analysis
 
-## Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Frontend | React 18, Vite, Tailwind CSS, Recharts, Framer Motion |
-| Backend | Node.js, Express.js, Mongoose |
-| Database | MongoDB |
-| ML/AI | Custom scoring algorithm (JavaScript) — no Python dependency |
-| Auth | JWT with bcrypt |
+---
 
 ## Project Structure
 
 ```
 nephroalert/
-├── client/                 # React frontend (Vite)
+├── client/                          # React frontend (Vite)
 │   └── src/
-│       ├── components/     # Reusable UI + chart components
-│       ├── pages/          # All route pages
-│       ├── context/        # Auth context
-│       ├── services/       # API client
-│       └── utils/          # eGFR calculation, PDF export
-├── server/                 # Express backend
-│   └── src/
-│       ├── models/         # Mongoose schemas
-│       ├── routes/         # API endpoints
-│       ├── services/       # ML prediction engine
-│       ├── middleware/     # Auth, error handling
-│       ├── seed/           # Demo data seeder
-│       └── config/         # Database connection
-├── .env                    # Environment variables
-└── package.json            # Root workspace scripts
+│       ├── components/              # Reusable UI + chart components
+│       ├── pages/                   # All route pages
+│       ├── context/                 # Auth context
+│       ├── services/                # API client (axios)
+│       └── utils/                   # eGFR calculation, PDF export
+├── server/                          # Spring Boot backend
+│   ├── pom.xml                      # Maven dependencies
+│   └── src/main/java/com/nephroalert/
+│       ├── NephroAlertApplication.java
+│       ├── config/                  # DataSeeder (auto-seeds on empty DB)
+│       ├── controller/              # REST controllers (Auth, Patient, Dashboard, Alert, Export)
+│       ├── dto/                     # Request/Response DTOs
+│       ├── entity/                  # JPA entities (Doctor, Patient, Visit, Alert)
+│       ├── repository/              # Spring Data JPA repositories
+│       ├── security/                # JWT filter, SecurityConfig, JwtUtil
+│       └── service/                 # PredictionService, AuthService
+└── package.json                     # Root scripts
 ```
+
+---
 
 ## API Endpoints
 
@@ -98,11 +124,46 @@ nephroalert/
 | GET | /api/patients | List all patients |
 | POST | /api/patients | Create patient |
 | GET | /api/patients/:id | Patient detail + visits + prediction |
-| POST | /api/patients/:id/visits | Add visit → runs ML prediction |
+| PUT | /api/patients/:id | Update patient |
+| DELETE | /api/patients/:id | Delete patient + related data |
+| POST | /api/patients/:id/visits | Add visit → runs ML prediction → creates alert |
+| GET | /api/patients/:id/visits | Get all visits for patient |
 | GET | /api/dashboard/stats | Dashboard statistics |
 | GET | /api/alerts | All alerts |
+| PUT | /api/alerts/:id/read | Mark alert read |
 | PUT | /api/alerts/read-all | Mark all alerts read |
 | GET | /api/export/csv | Anonymized research CSV |
+| GET | /api/health | Health check |
+
+---
+
+## ML Algorithm Pipeline
+
+```
+Patient visits entered
+        ↓
+Algorithm 1 — linearRegressionSlope() → trend direction & speed
+        +
+Algorithm 4 — % change calculation for each biomarker
+        ↓
+Algorithm 2 — calculateEGFR() → CKD-EPI 2021 formula
+        ↓
+Algorithm 3 — predictCKDProgression() → 5-factor scoring system (0-100)
+        ↓
+Final Risk Score + Risk Level + Explanation + Recommendation
+        ↓
+Doctor sees: Charts + Gauge + Alert + Recommendation
+```
+
+---
+
+## MySQL Schema (Auto-generated by Hibernate)
+
+Tables created automatically:
+- `doctors` — Healthcare provider accounts
+- `patients` — Patient demographics + current risk status
+- `visits` — Blood test results per visit + eGFR + risk at that visit
+- `alerts` — AI-generated alerts for high/critical patients
 
 ---
 

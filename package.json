@@ -1,13 +1,12 @@
 {
   "name": "nephroalert",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "AI-powered CKD progression monitoring for rural Primary Health Centers",
   "scripts": {
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
-    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
-    "seed": "cd server && node src/seed/index.js"
+    "dev:server": "cd server && mvn spring-boot:run",
+    "install:client": "cd client && npm install",
+    "build:server": "cd server && mvn clean package -DskipTests"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
