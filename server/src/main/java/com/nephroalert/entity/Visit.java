@@ -1,5 +1,6 @@
 package com.nephroalert.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -38,15 +39,19 @@ public class Visit {
     private Double bloodUrea;
 
     @Column(nullable = false)
+    @JsonProperty("eGFR")
     private Integer eGFR;
 
     @Column(nullable = false)
+    @JsonProperty("systolicBP")
     private Integer systolicBP;
 
     @Column(nullable = false)
+    @JsonProperty("diastolicBP")
     private Integer diastolicBP;
 
     @Column(nullable = false)
+    @JsonProperty("urineACR")
     private Double urineACR;
 
     private Integer ckdStageAtVisit;
