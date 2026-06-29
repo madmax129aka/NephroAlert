@@ -39,7 +39,7 @@ export default function Alerts() {
   const markRead = async (alertId) => {
     try {
       await api.put(`/alerts/${alertId}/read`);
-      setAlerts(alerts.map(a => a._id === alertId ? { ...a, read: true } : a));
+      setAlerts(alerts.map(a => (a._id || a.id) === alertId ? { ...a, read: true } : a));
     } catch {}
   };
 
@@ -83,13 +83,13 @@ export default function Alerts() {
         <div className="space-y-3">
           {filtered.map(alert => (
             <div
-              key={alert._id}
+              key={alert._id || alert.id}
               className={`card cursor-pointer hover:shadow-md transition-shadow ${
                 !alert.read ? 'border-l-4 border-l-primary' : ''
               }`}
               onClick={() => {
-                markRead(alert._id);
-                navigate(`/patients/${alert.patientId?._id || alert.patientId}`);
+                markRead(alert._id || alert.id);
+                navigate(`/patients/${alert.patientId?._id || alert.patientId?.id || alert.patientId}`);
               }}
             >
               <div className="flex items-start gap-4">

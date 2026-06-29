@@ -26,7 +26,7 @@ export default function PatientNew() {
         diabetesDuration: parseInt(form.diabetesDuration)
       });
       toast.success('Patient created! Now add their first blood test results.');
-      navigate(`/patients/${res.data._id}/visit/new`);
+      navigate(`/patients/${res.data.id || res.data._id}/visit/new`);
     } catch (error) {
       toast.error(error.response?.data?.message || 'Failed to create patient');
     } finally {

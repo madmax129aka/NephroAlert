@@ -114,9 +114,9 @@ export default function Patients() {
           <tbody>
             {filtered.map(patient => (
               <tr 
-                key={patient._id} 
+                key={patient.id || patient._id} 
                 className="border-b border-border/50 hover:bg-surface-alt transition-colors cursor-pointer"
-                onClick={() => navigate(`/patients/${patient._id}`)}
+                onClick={() => navigate(`/patients/${patient.id || patient._id}`)}
               >
                 <td className="py-3 px-3 font-medium text-sm">{patient.fullName}</td>
                 <td className="py-3 px-3 text-sm text-text-muted">{patient.age}y, {patient.gender}</td>

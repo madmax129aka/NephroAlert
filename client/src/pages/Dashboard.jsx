@@ -73,7 +73,7 @@ export default function Dashboard() {
             <div className="space-y-3">
               {stats.recentAlerts.map(alert => (
                 <div
-                  key={alert._id}
+                  key={alert._id || alert.id}
                   className="flex items-center gap-3 p-3 rounded-lg bg-surface-alt cursor-pointer hover:bg-gray-100 transition-colors"
                   onClick={() => navigate(`/patients/${alert.patientId}`)}
                 >
@@ -116,7 +116,7 @@ export default function Dashboard() {
             </thead>
             <tbody>
               {stats?.recentPatients?.map(patient => (
-                <tr key={patient._id} className="border-b border-border/50 hover:bg-surface-alt transition-colors">
+                <tr key={patient.id || patient._id} className="border-b border-border/50 hover:bg-surface-alt transition-colors">
                   <td className="py-3 px-2 font-medium text-sm">{patient.fullName}</td>
                   <td className="py-3 px-2 text-sm text-text-muted">{patient.age}y, {patient.gender}</td>
                   <td className="py-3 px-2">
@@ -132,7 +132,7 @@ export default function Dashboard() {
                   </td>
                   <td className="py-3 px-2 text-right">
                     <button
-                      onClick={() => navigate(`/patients/${patient._id}`)}
+                      onClick={() => navigate(`/patients/${patient.id || patient._id}`)}
                       className="text-xs font-medium text-primary hover:underline"
                     >
                       View

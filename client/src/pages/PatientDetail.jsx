@@ -223,7 +223,7 @@ export default function PatientDetail() {
             </thead>
             <tbody>
               {[...visits].reverse().map(visit => (
-                <tr key={visit._id} className="border-b border-border/50">
+                <tr key={visit.id || visit._id} className="border-b border-border/50">
                   <td className="py-2 px-2 text-sm">{new Date(visit.visitDate).toLocaleDateString('en-IN')}</td>
                   <td className="py-2 px-2 text-sm font-mono">{visit.hba1c}%</td>
                   <td className="py-2 px-2 text-sm font-mono">{visit.creatinine}</td>
