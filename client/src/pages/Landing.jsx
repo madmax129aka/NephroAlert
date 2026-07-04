@@ -21,7 +21,10 @@ export default function Landing() {
               </div>
               <span className="text-white font-bold text-xl">NephroAlert</span>
             </div>
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3">
+              <Link to="/eye-scan" className="text-white/80 hover:text-white px-4 py-2 rounded-lg transition-colors hidden sm:inline">
+                Home Screening
+              </Link>
               <Link to="/login" className="text-white/80 hover:text-white px-4 py-2 rounded-lg transition-colors">
                 Login
               </Link>
@@ -98,6 +101,35 @@ export default function Landing() {
             </div>
           ))}
         </div>
+      </section>
+
+      {/* Stage 1 — Home Eye Screening CTA */}
+      <section className="max-w-6xl mx-auto px-6 pb-24">
+        <motion.div
+          className="bg-primary rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 rounded-full blur-3xl"></div>
+          <p className="text-accent font-bold text-sm uppercase tracking-wide mb-3">Free Public Health Tool</p>
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+            Check Your Kidney Health at Home — Free
+          </h2>
+          <Link
+            to="/eye-scan"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors shadow-lg shadow-accent/30 mb-4"
+          >
+            Start Eye Screening <span aria-hidden="true">→</span>
+          </Link>
+          <p className="text-white/70 mt-2">
+            Takes 2 minutes. No equipment needed. Available in Tamil.
+          </p>
+          <p className="text-white/60">
+            2 நிமிடங்கள் மட்டுமே. எந்த கருவியும் தேவையில்லை. தமிழிலும் கிடைக்கிறது.
+          </p>
+        </motion.div>
       </section>
 
       {/* Footer */}

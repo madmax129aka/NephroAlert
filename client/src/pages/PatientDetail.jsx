@@ -9,6 +9,7 @@ import RiskGauge from '../components/charts/RiskGauge';
 import TrendArrow, { InverseTrendArrow } from '../components/ui/TrendArrow';
 import { getCKDStageInfo } from '../utils/egfr';
 import { generatePDF } from '../utils/pdfExport';
+import { computeCombinedRisk, getScoreBarColorClass } from '../utils/combinedScore';
 
 export default function PatientDetail() {
   const { id } = useParams();
@@ -203,6 +204,9 @@ export default function PatientDetail() {
         </div>
       )}
 
+      {/* Stage 3 — Combined Risk Assessment */}
+      <CombinedRiskAssessment patient={patient} visits={visits} />
+
       {/* Visit History */}
       <div className="card">
         <h3 className="font-semibold text-text-primary mb-4">Visit History</h3>
@@ -263,5 +267,138 @@ function StatusBadge({ pctChange, isInverse }) {
 
   return (
     <span className={`text-xs font-semibold px-2 py-0.5 rounded ${color}`}>{status}</span>
+  );
+}
+
+// ==========================================================
+// Stage 3 — Combined Risk Assessment
+// Combines Stage 1 (home eye screening + physical signs) with
+// Stage 2 (blood test trajectory) scores. Purely additive —
+// renders nothing that touches Stage 2 scoring logic itself.
+// ==========================================================
+function CombinedRiskAssessment({ patient, visits }) {
+  const stage1Score = patient?.stage1Score;
+  const stage1Level = patient?.stage1Level;
+  const stage2Score = patient?.currentRiskScore;
+  const stage2Level = patient?.currentRiskLevel;
+
+  const hasStage1 = stage1Score !== null && stage1Score !== undefined;
+  const hasStage2 = stage2Score !== null && stage2Score !== undefined;
+
+  if (!hasStage1 && !hasStage2) return null;
+
+  return (
+    <div className="card mb-8">
+      <h3 className="font-semibold text-text-primary mb-1">Combined Risk Assessment</h3>
+      <p className="text-xs text-text-muted mb-5">Stage 3 — combines home eye screening with blood test trajectory</p>
+
+      {hasStage1 && (
+        <ScoreRow
+          label="Stage 1 Score"
+          sublabel="Physical Signs"
+          score={stage1Score}
+          level={stage1Level}
+        />
+      )}
+
+      {hasStage2 && (
+        <ScoreRow
+          label="Stage 2 Score"
+          sublabel="Blood Tests"
+          score={stage2Score}
+          level={stage2Level}
+        />
+      )}
+
+      {hasStage1 && !hasStage2 && (
+        <p className="text-sm text-text-muted italic mt-2">
+          Add blood test results to get combined score
+        </p>
+      )}
+
+      {!hasStage1 && hasStage2 && (
+        <p className="text-sm text-text-muted italic mt-2">
+          Complete home eye screening to get combined score
+        </p>
+      )}
+
+      {hasStage1 && hasStage2 && (
+        <CombinedResult
+          patient={patient}
+          stage1Score={stage1Score}
+          stage1Level={stage1Level}
+          stage2Score={stage2Score}
+          stage2Level={stage2Level}
+          visits={visits}
+        />
+      )}
+    </div>
+  );
+}
+
+function ScoreRow({ label, sublabel, score, level }) {
+  return (
+    <div className="mb-4">
+      <div className="flex items-center justify-between mb-1.5">
+        <div>
+          <span className="text-sm font-semibold text-text-primary">{label}</span>
+          <span className="text-xs text-text-muted ml-2">{sublabel}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="font-mono font-bold text-text-primary">{score}</span>
+          <RiskBadge level={level} />
+        </div>
+      </div>
+      <div className="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+        <div
+          className={getScoreBarColorClass(score)}
+          style={{ width: `${score}%`, height: '100%' }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function CombinedResult({ patient, stage1Score, stage1Level, stage2Score, stage2Level, visits }) {
+  const result = computeCombinedRisk(patient, stage1Score, stage1Level, stage2Score, stage2Level, visits);
+
+  return (
+    <>
+      <div className="border-t border-border my-4"></div>
+
+      <div className="mb-4">
+        <div className="flex items-center justify-between mb-1.5">
+          <div>
+            <span className="text-sm font-bold text-text-primary">Stage 3 Score</span>
+            <span className="text-xs text-text-muted ml-2">Combined Final</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-mono font-bold text-lg text-text-primary">{result.stage3Score}</span>
+            <RiskBadge level={result.stage3Level} size="lg" />
+          </div>
+        </div>
+        <div className="w-full h-3.5 bg-gray-100 rounded-full overflow-hidden">
+          <div
+            className={getScoreBarColorClass(result.stage3Score)}
+            style={{ width: `${result.stage3Score}%`, height: '100%' }}
+          />
+        </div>
+        <p className="text-xs text-text-muted mt-1.5">Confidence: {result.confidencePercent}%</p>
+      </div>
+
+      <div className="p-3 bg-surface-alt rounded-lg border border-border mb-3">
+        <p className="text-sm text-text-primary leading-relaxed">{result.explanationEn}</p>
+      </div>
+      <div className="p-3 bg-surface-alt rounded-lg border border-border mb-4">
+        <p className="text-sm text-text-primary leading-relaxed">{result.explanationTa}</p>
+      </div>
+
+      <div className="p-3 bg-primary/5 rounded-lg border border-primary/20">
+        <p className="text-sm font-medium text-text-primary">Recommendation:</p>
+        <p className="text-sm text-text-muted mb-2">{result.recommendationEn}</p>
+        <p className="text-sm font-medium text-text-primary">உங்கள் பரிந்துரை:</p>
+        <p className="text-sm text-text-muted">{result.recommendationTa}</p>
+      </div>
+    </>
   );
 }

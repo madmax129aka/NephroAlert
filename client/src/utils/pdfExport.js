@@ -1,4 +1,5 @@
 import jsPDF from 'jspdf';
+import { SYMPTOM_QUESTIONS } from './stage1Scoring';
 
 export function generatePDF(patient, visits, prediction) {
   const doc = new jsPDF();
@@ -138,4 +139,139 @@ export function generatePDF(patient, visits, prediction) {
 
   // Save
   doc.save(`patient_report_${patient.id || patient._id}.pdf`);
+}
+
+
+// ============================================================
+// Stage 1 — Home Eye Screening Report (additive, does not touch
+// the existing Stage 2 generatePDF function above).
+// ============================================================
+
+export function generateStage1PDF({ patientName, capturedImage, eyeResult, answers, stage1Result, screeningId }) {
+  const doc = new jsPDF();
+  const pageWidth = doc.internal.pageSize.getWidth();
+  let y = 20;
+
+  // Header
+  doc.setFillColor(15, 76, 129);
+  doc.rect(0, 0, pageWidth, 35, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(20);
+  doc.setFont('helvetica', 'bold');
+  doc.text('NephroAlert', 15, 15);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Stage 1 - Home Screening Report', 15, 23);
+  doc.text(`Generated: ${new Date().toLocaleString('en-IN')}`, 15, 30);
+
+  y = 45;
+  doc.setTextColor(0, 0, 0);
+
+  // Patient + screening info
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Patient Information', 15, y);
+  y += 8;
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  doc.text(`Name: ${patientName || 'Not provided'}`, 15, y); y += 6;
+  doc.text(`Date: ${new Date().toLocaleDateString('en-IN')}  Time: ${new Date().toLocaleTimeString('en-IN')}`, 15, y); y += 6;
+  if (screeningId) {
+    doc.text(`Screening ID: ${screeningId}`, 15, y); y += 6;
+  }
+  y += 4;
+
+  // Eye scan result
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Eye Scan Result', 15, y);
+  y += 8;
+
+  if (capturedImage) {
+    try {
+      doc.addImage(capturedImage, 'JPEG', 15, y, 50, 37.5);
+    } catch (e) {
+      // If image embedding fails for any reason, continue without it.
+    }
+  }
+
+  const textX = capturedImage ? 72 : 15;
+  let imgY = y;
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.text(`Pallor Level: ${eyeResult?.pallourLevel || '-'}`, textX, imgY); imgY += 6;
+  doc.setFont('helvetica', 'normal');
+  doc.text(`Colour: ${eyeResult?.colour || '-'}`, textX, imgY); imgY += 6;
+  doc.text(`Anaemia Risk: ${eyeResult?.anaemiaRisk || '-'}`, textX, imgY); imgY += 6;
+  doc.text(`Points: ${eyeResult?.points ?? '-'}/3`, textX, imgY); imgY += 6;
+
+  y += 42;
+
+  doc.setFontSize(9);
+  const msgEn = doc.splitTextToSize(eyeResult?.messageEn || '', pageWidth - 30);
+  doc.text(msgEn, 15, y);
+  y += msgEn.length * 5 + 2;
+  const msgTa = doc.splitTextToSize(eyeResult?.messageTa || '', pageWidth - 30);
+  doc.text(msgTa, 15, y);
+  y += msgTa.length * 5 + 8;
+
+  // Symptom answers
+  if (y > 250) { doc.addPage(); y = 20; }
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Symptom Questionnaire', 15, y);
+  y += 8;
+
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  SYMPTOM_QUESTIONS.forEach((q, idx) => {
+    if (y > 275) { doc.addPage(); y = 20; }
+    const selected = answers?.[q.id];
+    const option = q.options.find(o => o.value === selected);
+    const line = doc.splitTextToSize(`${idx + 1}. ${q.en} -> ${option ? option.labelEn : 'Not answered'} (${option ? option.points : 0} pts)`, pageWidth - 30);
+    doc.text(line, 15, y);
+    y += line.length * 5 + 2;
+  });
+
+  y += 6;
+  if (y > 240) { doc.addPage(); y = 20; }
+
+  // Stage 1 score
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Stage 1 Score', 15, y);
+  y += 8;
+
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text(`${stage1Result?.stage1Score ?? '-'} / 100  —  ${stage1Result?.level || '-'} Risk`, 15, y);
+  y += 10;
+
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Recommendation (English):', 15, y); y += 6;
+  doc.setFont('helvetica', 'normal');
+  const recEn = doc.splitTextToSize(stage1Result?.recommendationEn || '', pageWidth - 30);
+  doc.text(recEn, 15, y);
+  y += recEn.length * 5 + 6;
+
+  doc.setFont('helvetica', 'bold');
+  doc.text('Recommendation (Tamil):', 15, y); y += 6;
+  doc.setFont('helvetica', 'normal');
+  const recTa = doc.splitTextToSize(stage1Result?.recommendationTa || '', pageWidth - 30);
+  doc.text(recTa, 15, y);
+  y += recTa.length * 5 + 10;
+
+  // Footer
+  const footerY = doc.internal.pageSize.getHeight() - 15;
+  doc.setFontSize(8);
+  doc.setTextColor(100, 100, 100);
+  const footerLines = doc.splitTextToSize(
+    'This is a screening tool only. Please show this report to your doctor. NephroAlert - Dr. MGR Educational and Research Institute',
+    pageWidth - 30
+  );
+  doc.text(footerLines, 15, footerY);
+
+  doc.save(`nephroalert_home_screening_${screeningId || Date.now()}.pdf`);
 }

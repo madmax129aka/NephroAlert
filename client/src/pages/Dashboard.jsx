@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, AlertCircle, AlertTriangle, Bell, Plus } from 'lucide-react';
+import { Users, AlertCircle, AlertTriangle, Bell, Plus, Eye } from 'lucide-react';
 import api from '../services/api';
 import StatCard from '../components/ui/StatCard';
 import RiskBadge from '../components/ui/RiskBadge';
@@ -51,12 +51,54 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
         <StatCard title="Total Patients" value={stats?.totalPatients || 0} color="#0F4C81" icon={Users} />
         <StatCard title="Critical Risk" value={stats?.riskBreakdown?.Critical || 0} color="#DC2626" icon={AlertCircle} />
         <StatCard title="High Risk" value={stats?.riskBreakdown?.High || 0} color="#EA580C" icon={AlertTriangle} />
         <StatCard title="Active Alerts" value={stats?.activeAlerts || 0} color="#D97706" icon={Bell} />
+        <StatCard title="Home Screenings Today" value={stats?.homeScreeningsToday || 0} color="#00A878" icon={Eye} />
       </div>
+
+      {/* Stage 1 — Pending Follow-ups */}
+      {stats?.pendingFollowUps?.length > 0 && (
+        <div className="card mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-text-primary">Pending Follow-ups</h3>
+            <button onClick={() => navigate('/admin-screenings')} className="text-sm text-primary hover:underline font-medium">
+              View All Screenings
+            </button>
+          </div>
+          <p className="text-xs text-text-muted mb-4">
+            High/Critical home screenings from the last 7 days not yet linked to a patient. Search the Screening ID when the patient arrives at the PHC.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 px-2 text-xs font-semibold text-text-muted uppercase">Screening ID</th>
+                  <th className="text-left py-2 px-2 text-xs font-semibold text-text-muted uppercase">Date</th>
+                  <th className="text-left py-2 px-2 text-xs font-semibold text-text-muted uppercase">Score</th>
+                  <th className="text-left py-2 px-2 text-xs font-semibold text-text-muted uppercase">Level</th>
+                </tr>
+              </thead>
+              <tbody>
+                {stats.pendingFollowUps.map(f => (
+                  <tr key={f.screeningId} className="border-b border-border/50">
+                    <td className="py-2.5 px-2 font-mono text-sm font-semibold">{f.screeningId}</td>
+                    <td className="py-2.5 px-2 text-sm text-text-muted">
+                      {f.createdAt ? new Date(f.createdAt).toLocaleString('en-IN') : '—'}
+                    </td>
+                    <td className="py-2.5 px-2 text-sm font-semibold">{f.stage1Score}/100</td>
+                    <td className="py-2.5 px-2">
+                      <RiskBadge level={f.stage1Level} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       {/* Charts + Alerts Row */}
       <div className="grid lg:grid-cols-2 gap-6 mb-8">

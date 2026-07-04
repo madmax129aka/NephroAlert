@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, Users, Bell, BarChart2, Download, LogOut, Activity } from 'lucide-react';
+import { LayoutDashboard, Users, Bell, BarChart2, Download, LogOut, Activity, Eye } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useState, useEffect } from 'react';
 import api from '../../services/api';
@@ -31,6 +31,7 @@ export default function Sidebar() {
     { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { to: '/patients', icon: Users, label: 'All Patients' },
     { to: '/alerts', icon: Bell, label: 'Alerts', badge: alertCount },
+    { to: '/admin-screenings', icon: Eye, label: 'Home Screenings' },
     { to: '/export', icon: Download, label: 'Export Data' },
   ];
 

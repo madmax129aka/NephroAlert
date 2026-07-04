@@ -39,6 +39,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
                         .requestMatchers("/api/health").permitAll()
+                        // Stage 1 — public, unauthenticated home eye screening submission.
+                        // This is the only screening route that does not require auth;
+                        // lookup/list/link routes below still require a logged-in doctor.
+                        .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/screening/home").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
