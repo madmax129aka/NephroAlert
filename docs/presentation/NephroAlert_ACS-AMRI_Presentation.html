@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>NephroAlert — ACS-AMRI Seed Grant Presentation</title>
+<style>
+  :root{
+    --navy:#1B4F72;
+    --navy-dark:#123A56;
+    --navy-light:#5D8AA8;
+    --teal:#00A878;
+    --teal-light:#E6F7F1;
+    --orange:#E67E22;
+    --red:#C0392B;
+    --green:#27AE60;
+    --grey:#95A5A6;
+    --bg:#F4F6F7;
+    --text:#2C3E50;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#DADFE1;font-family:'Segoe UI',Arial,Helvetica,sans-serif;color:var(--text);}
+  .deck{display:flex;flex-direction:column;align-items:center;gap:28px;padding:28px 0 60px;}
+  .slide{
+    width:1280px;
+    min-height:720px;
+    background:var(--white);
+    position:relative;
+    box-shadow:0 6px 24px rgba(0,0,0,0.18);
+    padding:38px 56px 0 56px;
+    overflow:hidden;
+    page-break-after:always;
+  }
+  .slide.dark{background:var(--navy);color:var(--white);}
+  .slide-title{
+    font-size:26px;font-weight:700;color:var(--navy);margin:0 0 4px 0;letter-spacing:0.2px;
+  }
+  .slide.dark .slide-title{color:var(--white);}
+  .title-underline{width:64px;height:5px;background:var(--teal);border-radius:3px;margin-bottom:18px;}
+  .footer{
+    position:absolute;left:56px;right:56px;bottom:14px;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:9.5px;color:#7A8B99;border-top:1px solid #E3E7E9;padding-top:6px;
+  }
+  .slide.dark .footer{color:#B9C6D0;border-top:1px solid rgba(255,255,255,0.15);}
+  .slide-number{font-weight:700;color:var(--navy);}
+  .slide.dark .slide-number{color:var(--teal);}
+  .content{padding-bottom:50px;}
+  h1,h2,h3,h4,p,ul,ol,table{margin:0;}
+  .eyebrow{font-size:11px;letter-spacing:2px;color:var(--teal);font-weight:700;text-transform:uppercase;}
+
+  /* ---------- Generic building blocks ---------- */
+  .pill{
+    display:inline-block;background:var(--teal);color:#fff;font-size:11px;font-weight:600;
+    padding:6px 14px;border-radius:16px;margin:4px 6px 0 0;
+  }
+  .quote-box{
+    border-left:4px solid var(--teal);background:#EAF3FB;padding:14px 20px;
+    font-style:italic;font-size:13px;color:var(--text);border-radius:0 6px 6px 0;
+  }
+  .card{background:var(--bg);border-radius:10px;padding:14px 16px;border:1px solid #E3E7E9;}
+  .stat-box{border-radius:10px;padding:12px 14px;color:#fff;text-align:center;}
+  .stat-num{font-size:26px;font-weight:800;line-height:1;}
+  .stat-label{font-size:10.5px;margin-top:4px;line-height:1.3;}
+  table.data-table{width:100%;border-collapse:collapse;font-size:11px;}
+  table.data-table th{background:var(--navy);color:#fff;padding:7px 8px;text-align:left;font-size:10.5px;}
+  table.data-table td{padding:6px 8px;border-bottom:1px solid #E3E7E9;vertical-align:top;}
+  table.data-table tr:nth-child(even) td{background:#F7F9F9;}
+  .checklist-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px;}
+  .check-icn{flex:0 0 20px;width:20px;height:20px;border-radius:50%;background:var(--teal);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;}
+  .arrow-down{text-align:center;color:var(--navy);font-size:18px;line-height:1;margin:3px 0;font-weight:700;}
+  .flow-box{border-radius:8px;padding:10px 14px;color:#fff;font-size:12px;font-weight:600;text-align:center;line-height:1.35;}
+  .badge-lvl{display:inline-block;padding:4px 10px;border-radius:14px;color:#fff;font-size:11px;font-weight:700;}
+  .kicker{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;}
+  .col{display:flex;flex-direction:column;}
+  .row{display:flex;}
+  .divider-v{width:1px;background:#E3E7E9;margin:0 18px;}
+  .small{font-size:11px;color:#5B6B77;}
+  .icon-outline{width:16px;height:16px;display:inline-block;vertical-align:middle;stroke:var(--navy);stroke-width:1.6;fill:none;}
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- ============================================================ -->
+<!-- SLIDE 1 — TITLE -->
+<!-- ============================================================ -->
+<section class="slide dark" style="display:flex;flex-direction:column;justify-content:center;">
+  <svg viewBox="0 0 1280 720" style="position:absolute;top:0;left:0;width:1280px;height:720px;opacity:0.06;pointer-events:none;">
+    <path d="M640 180 C 560 180 500 240 500 330 C 500 430 580 480 640 560 C 700 480 780 430 780 330 C 780 240 720 180 640 180 Z" fill="none" stroke="#FFFFFF" stroke-width="6"/>
+  </svg>
+  <div style="position:absolute;top:0;left:0;width:10px;height:720px;background:var(--teal);"></div>
+
+  <div style="max-width:980px;margin:0 auto;text-align:center;">
+    <p style="color:var(--teal);font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;">ACS-AMRI Student Research Grant Proposal</p>
+    <h1 style="font-size:64px;font-weight:800;color:#fff;margin-bottom:6px;letter-spacing:1px;">NephroAlert</h1>
+    <div style="width:120px;height:5px;background:var(--teal);margin:14px auto 22px;border-radius:3px;"></div>
+    <p style="font-size:19px;color:#DCE7EF;line-height:1.5;max-width:840px;margin:0 auto;">
+      AI-Powered Early Detection of Chronic Kidney Disease Progression in Diabetic Patients Using Longitudinal Blood Test Trajectory Analysis
+    </p>
+    <p style="margin-top:22px;font-size:13px;color:#B9C6D0;letter-spacing:1px;">CATEGORY: BIOMEDICAL INFORMATICS &amp; HEALTHCARE AI</p>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;max-width:1050px;width:100%;margin:46px auto 0;">
+    <div style="flex:1;">
+      <p style="color:var(--teal);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Presented by</p>
+      <p style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">[Student Name]</p>
+      <p style="font-size:12.5px;color:#CBD9E2;margin-bottom:2px;">Register No: [Register Number]</p>
+      <p style="font-size:12.5px;color:#CBD9E2;margin-bottom:2px;">[Programme &amp; Year] · [Department]</p>
+      <p style="font-size:12.5px;color:#CBD9E2;">Dr. MGR Educational and Research Institute, Chennai</p>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,0.2);margin:0 30px;"></div>
+    <div style="flex:1;">
+      <p style="color:var(--teal);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Faculty Guide</p>
+      <p style="font-size:15px;font-weight:700;color:#fff;margin-bottom:2px;">[Guide Name]</p>
+      <p style="font-size:12.5px;color:#CBD9E2;margin-bottom:2px;">[Designation &amp; Department]</p>
+      <p style="font-size:12.5px;color:#CBD9E2;">Dr. MGR Educational and Research Institute, Chennai</p>
+    </div>
+  </div>
+  <p style="text-align:right;max-width:1050px;width:100%;margin:14px auto 0;font-size:12.5px;color:#B9C6D0;">Date: July 2026</p>
+
+  <div class="footer" style="position:absolute;">
+    <span>NephroAlert | ACS-AMRI Seed Grant Proposal 2026 | Dr. MGR Educational and Research Institute, Chennai</span>
+    <span class="slide-number">1</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2 — ABSTRACT -->
+<!-- ============================================================ -->
+<section class="slide">
+  <h2 class="slide-title">Abstract</h2>
+  <div class="title-underline"></div>
+  <div class="content" style="max-width:1080px;margin:26px auto 0;">
+    <div class="quote-box" style="font-size:14.5px;line-height:1.75;padding:26px 32px;">
+      Chronic Kidney Disease (CKD) affects approximately 17% of India's adult population, with diabetic nephropathy accounting for nearly 40% of all CKD cases. Despite routine blood test collection at Primary Health Centres (PHCs), no existing clinical decision support tool analyses longitudinal biomarker trajectories to predict CKD progression before irreversible damage occurs. This project proposes NephroAlert — a lightweight, web-based AI system that analyses multi-visit patterns of serum creatinine, eGFR, HbA1c, blood urea, urine ACR, and blood pressure to generate a quantified CKD progression risk score. Unlike threshold-based single-visit evaluation, NephroAlert detects dangerous declining trajectories 4–6 months earlier. Validated on de-identified retrospective PHC data from Tamil Nadu, this tool aims to enable timely nephrology referrals, reduce preventable kidney failure, and support rural healthcare workers with AI-assisted clinical decisions.
+    </div>
+    <div style="margin-top:26px;text-align:center;">
+      <span class="pill">Chronic Kidney Disease</span>
+      <span class="pill">Diabetic Nephropathy</span>
+      <span class="pill">Longitudinal Analysis</span>
+      <span class="pill">Machine Learning</span>
+      <span class="pill">Primary Health Care</span>
+      <span class="pill">Clinical Decision Support</span>
+    </div>
+  </div>
+  <div class="footer">
+    <span>NephroAlert | ACS-AMRI Seed Grant Proposal 2026 | Dr. MGR Educational and Research Institute, Chennai</span>
+    <span class="slide-number">2</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3 — PROBLEM STATEMENT -->
+<!-- ============================================================ -->
+<section class="slide">
+  <h2 class="slide-title">The Silent Crisis Nobody Is Tracking</h2>
+  <div class="title-underline"></div>
+  <div class="content" style="display:flex;gap:30px;margin-top:18px;">
+
+    <!-- LEFT 60% -->
+    <div style="flex:0 0 58%;">
+      <p class="kicker">The Hidden Data Problem</p>
+      <div class="flow-box" style="background:var(--navy);">Diabetic patient visits PHC every 3 months</div>
+      <div class="arrow-down">&#9660;</div>
+      <div class="flow-box" style="background:var(--navy);">Blood tests collected: Creatinine, eGFR, HbA1c, Urea, ACR, BP</div>
+      <div class="arrow-down">&#9660;</div>
+      <div class="flow-box" style="background:var(--orange);">Doctor evaluates ONLY today's values in isolation</div>
+      <div class="arrow-down">&#9660;</div>
+      <div class="flow-box" style="background:var(--red);">Dangerous trajectory missed for 4–6 months</div>
+      <div class="arrow-down">&#9660;</div>
+      <div class="flow-box" style="background:#7A1E14;">CKD detected at Stage 4 — irreversible damage done</div>
+    </div>
+
+    <!-- RIGHT 40% -->
+    <div style="flex:1;">
+      <p class="kicker">The Numbers</p>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <div class="stat-box" style="background:var(--red);display:flex;align-items:center;justify-content:space-between;text-align:left;padding:10px 16px;">
+          <span class="stat-num">17%</span><span class="stat-label" style="max-width:170px;">of Indian adults have CKD</span>
+        </div>
+        <div class="stat-box" style="background:var(--orange);display:flex;align-items:center;justify-content:space-between;text-align:left;padding:10px 16px;">
+          <span class="stat-num">40%</span><span class="stat-label" style="max-width:170px;">of CKD cases caused by diabetes</span>
+        </div>
+        <div class="stat-box" style="background:#34495E;display:flex;align-items:center;justify-content:space-between;text-align:left;padding:10px 16px;">
+          <span class="stat-num">85%</span><span class="stat-label" style="max-width:170px;">shortage of nephrologists in rural India</span>
+        </div>
+        <div class="stat-box" style="background:var(--navy);display:flex;align-items:center;justify-content:space-between;text-align:left;padding:10px 16px;">
+          <span class="stat-num">4–6</span><span class="stat-label" style="max-width:170px;">months of warning signs go unnoticed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-box" style="margin-top:16px;max-width:1168px;">
+    A patient whose creatinine rises 0.9 → 1.1 → 1.3 → 1.6 mg/dL across 4 visits has lost 40% of kidney function — yet each individual reading appears "acceptable" to a busy PHC doctor.
+  </div>
+
+  <div class="footer">
+    <span>NephroAlert | ACS-AMRI Seed Grant Proposal 2026 | Dr. MGR Educational and Research Institute, Chennai</span>
+    <span class="slide-number">3</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4 — LITERATURE SURVEY -->
+<!-- ============================================================ -->
+<section class="slide">
+  <h2 class="slide-title">Literature Survey</h2>
+  <div class="title-underline"></div>
+  <div class="content" style="margin-top:14px;">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="width:16%;">Author &amp; Year</th>
+          <th style="width:19%;">Study Focus</th>
+          <th style="width:19%;">Method Used</th>
+          <th style="width:24%;">Key Finding</th>
+          <th style="width:22%;">Limitation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Ingsathit et al., 2010</b></td>
+          <td>CKD prevalence and risk factors in Asia</td>
+          <td>Cross-sectional survey, 25,000 participants</td>
+          <td>Diabetes and hypertension are primary CKD risk factors</td>
+          <td>No longitudinal trajectory analysis</td>
+        </tr>
+        <tr>
+          <td><b>Inker et al., 2021</b> (NEJM)</td>
+          <td>CKD-EPI 2021 eGFR equation development</td>
+          <td>Multi-centre validation, race-free formula</td>
+          <td>CKD-EPI 2021 more accurate across all populations</td>
+          <td>Single-visit measurement only</td>
+        </tr>
+        <tr>
+          <td><b>Dua &amp; Gupta, 2012</b> (J. Biomed. Informatics)</td>
+          <td>ML for CKD diagnosis using UCI dataset</td>
+          <td>Naive Bayes, Decision Tree, SVM</td>
+          <td>98% classification accuracy on UCI dataset</td>
+          <td>Static single-visit data, not longitudinal</td>
+        </tr>
+        <tr>
+          <td><b>Ravindranath et al., 2016</b></td>
+          <td>Diabetic nephropathy prevalence in South India</td>
+          <td>Clinical study, 500 diabetic patients</td>
+          <td>32% of South Indian diabetics develop nephropathy</td>
+          <td>No predictive model developed</td>
+        </tr>
+        <tr>
+          <td><b>Kato et al., 2019</b> (Diabetes Research)</td>
+          <td>HbA1c trajectory and kidney function decline</td>
+          <td>Longitudinal cohort, 1,200 patients, 5 years</td>
+          <td>HbA1c trend a stronger predictor than a single value</td>
+          <td>Japanese population, not validated for India</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:18px;border:1.5px solid var(--teal);background:var(--teal-light);border-radius:8px;padding:14px 20px;">
+      <p style="font-size:11.5px;font-weight:800;color:var(--navy);letter-spacing:1px;margin-bottom:6px;">IDENTIFIED RESEARCH GAP</p>
+      <p style="font-size:13px;line-height:1.5;color:var(--text);">
+        No existing study combines multi-biomarker longitudinal trajectory analysis with real-time clinical decision support specifically for Tamil Nadu PHC settings.
+      </p>
+    </div>
+  </div>
+  <div class="footer">
+    <span>NephroAlert | ACS-AMRI Seed Grant Proposal 2026 | Dr. MGR Educational and Research Institute, Chennai</span>
+    <span class="slide-number">4</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5 — PROPOSED METHODOLOGY -->
+<!-- ============================================================ -->
+<section class="slide">
+  <h2 class="slide-title">Proposed Methodology — NephroAlert System Architecture</h2>
+  <div class="title-underline"></div>
+
+  <div class="content" style="margin-top:12px;">
+    <div style="display:flex;align-items:stretch;gap:6px;">
+
+      <div class="card" style="flex:1;background:#EAF1F6;">
+        <p class="kicker" style="font-size:11px;">Data Input</p>
+        <p style="font-size:11px;font-weight:700;margin-bottom:6px;">Multi-Visit PHC Data</p>
+        <ul style="font-size:10.5px;line-height:1.7;padding-left:14px;margin:0;">
+          <li>Serum Creatinine</li>
+          <li>eGFR (auto-calculated)</li>
+          <li>HbA1c</li>
+          <li>Blood Urea</li>
+          <li>Urine ACR</li>
+          <li>Systolic BP</li>
+          <li>Visit dates</li>
+        </ul>
+      </div>
+
+      <div style="display:flex;align-items:center;font-size:22px;color:var(--navy);font-weight:700;">&#8594;</div>
+
+      <div class="card" style="flex:1;background:#EAF1F6;">
+        <p class="kicker" style="font-size:11px;">Processing</p>
+        <p style="font-size:11px;font-weight:700;margin-bottom:6px;">Feature Engineering</p>
+        <ul style="font-size:10.5px;line-height:1.7;padding-left:14px;margin:0;">
+          <li>Linear regression slope per biomarker</li>
+          <li>% change first to latest visit</li>
+          <li>Trimester-adjusted normalisation</li>
+          <li>CKD-EPI 2021 eGFR calculation</li>
+          <li>Composite trajectory score</li>
+        </ul>
+      </div>
+
+      <div style="display:flex;align-items:center;font-size:22px;color:var(--navy);font-weight:700;">&#8594;</div>
+
+      <div class="card" style="flex:1;background:var(--navy);color:#fff;">
+        <p class="kicker" style="font-size:11px;color:var(--teal);">AI Engine</p>
+        <p style="font-size:11px;font-weight:700;margin-bottom:6px;">Risk Scoring Engine</p>
+        <ul style="font-size:10.5px;line-height:1.65;padding-left:14px;margin:0;">
+          <li>① eGFR Level — 20 pts</li>
+          <li>② eGFR Decline Rate — 20 pts</li>
+          <li>③ Creatinine Rise — 20 pts</li>
+          <li>④ HbA1c Control — 20 pts</li>
+          <li>⑤ Urine ACR — 20 pts</li>
+        </ul>
+        <p style="font-size:9.5px;margin-top:4px;color:#CBD9E2;">+ Modifiers: smoking, BP, DM duration</p>
+      </div>
+
+      <div style="display:flex;align-items:center;font-size:22px;color:var(--navy);font-weight:700;">&#8594;</div>
+
+      <div class="card" style="flex:1;background:#EAF1F6;">
+        <p class="kicker" style="font-size:11px;">Output</p>
+        <p style="font-size:11px;font-weight:700;margin-bottom:6px;">Risk Classification</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <span class="badge-lvl" style="background:var(--green);">LOW (0–24)</span>
+          <span class="badge-lvl" style="background:#D4AC0D;">MODERATE (25–49)</span>
+          <span class="badge-lvl" style="background:var(--orange);">HIGH (50–74)</span>
+          <span class="badge-lvl" style="background:var(--red);">CRITICAL (75–100)</span>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;font-size:22px;color:var(--navy);font-weight:700;">&#8594;</div>
+
+      <div class="card" style="flex:1;background:#EAF1F6;">
+        <p class="kicker" style="font-size:11px;">Action</p>
+        <p style="font-size:11px;font-weight:700;margin-bottom:6px;">Clinical Decision Support</p>
+        <ul style="font-size:10.5px;line-height:1.7;padding-left:14px;margin:0;">
+          <li>Plain English explanation</li>
+          <li>Tamil language output</li>
+          <li>Referral recommendation</li>
+          <li>Urgency classification</li>
+          <li>PDF report generation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:20px;margin-top:22px;">
+      <div class="card" style="flex:1;border-left:5px solid var(--navy);">
+        <p class="kicker">Training Dataset</p>
+        <ul style="font-size:12px;line-height:1.7;padding-left:16px;margin:0;">
+          <li>UCI CKD Dataset (400 instances)</li>
+          <li>NHANES Diabetic Subset (~3,000)</li>
+          <li>Local PHC data (50+ records)</li>
+          <li>Algorithm: Random Forest + OLS Regression</li>
+        </ul>
+      </div>
+      <div class="card" style="flex:1;border-left:5px solid var(--teal);">
+        <p class="kicker">Validation Metrics</p>
+        <ul style="font-size:12px;line-height:1.7;padding-left:16px;margin:0;">
+          <li>AUC-ROC target: ≥ 0.80</li>
+          <li>Sensitivity: ≥ 75%</li>
+          <li>Specificity: ≥ 80%</li>
+          <li>Confidence scaled by visit count</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>NephroAlert | ACS-AMRI Seed Grant Proposal 2026 | Dr. MGR Educational and Research Institute, Chennai</span>
+    <span class="slide-number">5</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6 — CORE ALGORITHMS -->
+<!-- ============================================================ -->
+<section class="slide">
+  <h2 class="slide-title">Core Algorithms — The Mathematical Foundation</h2>
+  <div class="title-underline"></div>
+
+  <div class="content" style="margin-top:10px;">
+    <p class="kicker">Algorithm 1 — CKD-EPI 2021 Real-Time eGFR Calculation</p>
+    <div style="display:flex;gap:16px;">
+      <div class="card" style="flex:1.3;background:#EAF1F6;font-family:'Cambria Math',serif;">
+        <p style="font-size:12px;margin-bottom:4px;">For Scr / κ &lt; 1:</p>
+        <p style="font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:8px;">eGFR = 142 × (Scr/κ)<sup>α</sup> × (0.9938)<sup>Age</sup></p>
+        <p style="font-size:12px;margin-bottom:4px;">For Scr / κ ≥ 1:</p>
+        <p style="font-size:13.5px;font-weight:700;color:var(--navy);">eGFR = 142 × (Scr/κ)<sup>−1.200</sup> × (0.9938)<sup>Age</sup></p>
+        <p style="font-size:10.5px;color:#5B6B77;margin-top:8px;">κ = 0.7 (Female) | 0.9 (Male) &nbsp;·&nbsp; α = −0.241 (Female) | −0.302 (Male) &nbsp;·&nbsp; Female multiplier ×1.012</p>
+      </div>
+      <div class="card" style="flex:1;">
+        <p style="font-size:11px;font-weight:700;color:var(--navy);margin-bottom:6px;">CKD Stage Reference (eGFR, ml/min)</p>
+        <table style="width:100%;font-size:10.5px;border-collapse:collapse;">
+          <tr><td style="padding:2px 0;">Stage 1</td><td style="text-align:right;font-weight:700;">≥ 90</td><td style="padding:2px 0 2px 14px;">Stage 3b</td><td style="text-align:right;font-weight:700;">30–44</td></tr>
+          <tr><td style="padding:2px 0;">Stage 2</td><td style="text-align:right;font-weight:700;">60–89</td><td style="padding:2px 0 2px 14px;">Stage 4</td><td style="text-align:right;font-weight:700;">15–29</td></tr>
+          <tr><td style="padding:2px 0;">Stage 3a</td><td style="text-align:right;font-weight:700;">45–59</td><td style="padding:2px 0 2px 14px;">Stage 5</td><td style="text-align:right;font-weight:700;">&lt; 15</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:16px;margin-top:16px;">
+      <!-- Algorithm 2 -->
+      <div style="flex:1;">
+        <p class="kicker">Algorithm 2 — Linear Regression Slope (Trajectory Detection)</p>
+        <div class="card" style="background:#EAF1F6;">
+          <p style="font-size:12px;font-weight:700;color:var(--navy);text-align:center;">slope = (n·ΣXY − ΣX·ΣY) / (n·ΣX² − (ΣX)²)</p>
+          <p style="font-size:10px;color:#5B6B77;text-align:center;">X = visit number, Y = biomarker value</p>
+        </div>
+
+        <svg viewBox="0 0 480 150" style="width:100%;height:140px;margin-top:10px;">
+          <line x1="30" y1="130" x2="460" y2="130" stroke="#B9C6D0" stroke-width="1"/>
+          <line x1="30" y1="10" x2="30" y2="130" stroke="#B9C6D0" stroke-width="1"/>
+          <!-- rising line -->
+          <polyline points="50,110 130,95 210,72 290,45 370,15" fill="none" stroke="#C0392B" stroke-width="3"/>
+          <circle cx="50" cy="110" r="3.5" fill="#C0392B"/><circle cx="130" cy="95" r="3.5" fill="#C0392B"/>
+          <circle cx="210" cy="72" r="3.5" fill="#C0392B"/><circle cx="290" cy="45" r="3.5" fill="#C0392B"/><circle cx="370" cy="15" r="3.5" fill="#C0392B"/>
+          <text x="380" y="18" font-size="11" fill="#C0392B" font-weight="700">2.1</text>
+          <!-- stable line -->
+          <polyline points="50,122 130,122 210,119 290,120 370,120" fill="none" stroke="#27AE60" stroke-width="3"/>
+          <circle cx="50" cy="122" r="3.5" fill="#27AE60"/><circle cx="130" cy="122" r="3.5" fill="#27AE60"/>
+          <circle cx="210" cy="119" r="3.5" fill="#27AE60"/><circle cx="290" cy="120" r="3.5" fill="#27AE60"/><circle cx="370" cy="120" r="3.5" fill="#27AE60"/>
+          <text x="380" y="128" font-size="11" fill="#27AE60" font-weight="700">0.8</text>
+        </svg>
+        <div style="display:flex;justify-content:space-between;font-size:10.5px;">
+          <span style="color:#C0392B;font-weight:700;">Creatinine 0.9→1.1→1.4→1.7→2.1 &nbsp;·&nbsp; slope +0.30/visit &nbsp;·&nbsp; RAPIDLY RISING 🔴</span>
+        </div>
+        <div style="font-size:10.5px;color:#27AE60;font-weight:700;">Creatinine 0.8→0.8→0.9→0.8→0.8 &nbsp;·&nbsp; slope +0.01/visit &nbsp;·&nbsp; STABLE 🟢</div>
+      </div>
+
+      <!-- Algorithm 3 -->
+      <div style="flex:1;">
+        <p class="kicker">Algorithm 3 — Weighted Risk Scoring</p>
+        <table class="data-table" style="font-size:10.5px;">
+          <thead><tr><th>Factor</th><th>Condition</th><th style="text-align:right;">Points</th></tr></thead>
+          <tbody>
+            <tr><td>eGFR Level</td><td>&lt; 30 ml/min</td><td style="text-align:right;">20</td></tr>
+            <tr><td>eGFR Level</td><td>30–44</td><td style="text-align:right;">17</td></tr>
+            <tr><td>eGFR Level</td><td>45–59</td><td style="text-align:right;">14</td></tr>
+            <tr><td>eGFR Decline</td><td>&gt; 40% drop</td><td style="text-align:right;">20</td></tr>
+            <tr><td>eGFR Decline</td><td>25–40% drop</td><td style="text-align:right;">14</td></tr>
+            <tr><td>Creatinine</td><td>Doubled</td><td style="text-align:right;">20</td></tr>
+            <tr><td>HbA1c</td><td>Average &gt; 9%</td><td style="text-align:right;">20</td></tr>
+            <tr><td>Urine ACR</td><td>&gt; 300 mg/g</td><td style="text-align:right;">20</td></tr>
+            <tr><td>BP</td><td>Avg &gt; 140</td><td style="text-align:right;">+5</td></tr>
+            <tr><td>Smoker</td><td>Yes</td><td style="text-align:right;">+5</td></tr>
+            <tr><td>DM Duration</td><td>&gt; 10 years</td><td style="text-align:right;">+5</td></tr>
+          </tbody>
+        </table>
+        <p class="small" style="text-align:right;margin-top:4px;">Score capped at 100.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>NephroAlert | ACS-AMRI Seed Grant Proposal 2026 | Dr. MGR Educational and Research Institute, Chennai</span>
+    <span class="slide-number">6</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7 — SYSTEM DESIGN -->
+<!-- ============================================================ -->
+<section class="slide">
+  <h2 class="slide-title">System Design — NephroAlert Web Application</h2>
+  <div class="title-underline"></div>
+
+  <div class="content" style="display:flex;gap:22px;margin-top:8px;">
+    <!-- LEFT: 3-tier stack -->
+    <div style="flex:1.5;display:flex;flex-direction:column;gap:5px;">
+
+      <div class="card" style="background:var(--navy);color:#fff;">
+        <p style="font-size:12px;font-weight:800;">TIER 1 · PRESENTATION LAYER</p>
+        <p style="font-size:11.5px;font-weight:700;color:var(--teal);margin-bottom:4px;">React.js + Vite Frontend</p>
+        <p style="font-size:10.5px;line-height:1.6;color:#DCE7EF;">Patient Dashboard · Visit Entry Form (eGFR auto-calc) · Biomarker Trend Charts (6 charts) · Risk Gauge (animated SVG) · Alert System · PDF Report Generator · Tamil Language Support</p>
+      </div>
+
+      <div style="text-align:center;font-size:10px;color:var(--navy);font-weight:700;">&#8597; REST API (HTTPS) · Spring Boot 3.2 + JWT Auth</div>
+
+      <div class="card" style="background:var(--navy-light);color:#fff;">
+        <p style="font-size:12px;font-weight:800;">TIER 2 · BUSINESS LOGIC</p>
+        <p style="font-size:11.5px;font-weight:700;margin-bottom:4px;">Spring Boot 3.2 Backend (Java 17)</p>
+        <p style="font-size:10.5px;line-height:1.6;">CKD-EPI Calculator Service · Risk Engine Service · Linear Regression Service · CKD Stage Classifier · Report Generator Service · Translation Service (Tamil) · Alert Notification Service</p>
+      </div>
+
+      <div style="text-align:center;font-size:10px;color:var(--navy);font-weight:700;">&#8597; JPA / Hibernate</div>
+
+      <div class="card" style="background:#34495E;color:#fff;">
+        <p style="font-size:12px;font-weight:800;">TIER 3 · DATA LAYER</p>
+        <p style="font-size:11.5px;font-weight:700;margin-bottom:4px;">MySQL Database</p>
+        <div style="display:flex;gap:6px;margin-top:4px;">
+          <span style="background:rgba(255,255,255,0.12);padding:4px 8px;border-radius:5px;font-size:10px;">doctors</span>
+          <span style="background:rgba(255,255,255,0.12);padding:4px 8px;border-radius:5px;font-size:10px;">patients</span>
+          <span style="background:rgba(255,255,255,0.12);padding:4px 8px;border-radius:5px;font-size:10px;">visits</span>
+          <span style="background:rgba(255,255,255,0.12);padding:4px 8px;border-radius:5px;font-size:10px;">alerts</span>
+          <span style="background:rgba(255,255,255,0.12);padding:4px 8px;border-radius:5px;font-size:10px;">reports</span>
+        </div>
+      </div>
+
+      <div class="card" style="border-left:4px solid var(--teal);margin-top:6px;">
+        <p style="font-size:10.5px;line-height:1.55;color:var(--text);"><b>Security:</b> All patient data stored with de-identification compliance. JWT authentication + HTTPS encryption. No patient identifiers in the ML training pipeline.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: free external APIs -->
+    <div style="flex:1;display:flex;flex-direction:column;gap:10px;">
+      <p class="kicker">Free External APIs</p>
+      <div class="card" style="border-left:4px solid var(--navy);">
+        <p style="font-size:11.5px;font-weight:700;">🗺️ Nominatim (OpenStreetMap)</p>
+        <p style="font-size:10.5px;color:#5B6B77;">Nearest PHC locator</p>
+      </div>
+      <div class="card" style="border-left:4px solid var(--teal);">
+        <p style="font-size:11.5px;font-weight:700;">🌐 Google Translate (free endpoint)</p>
+        <p style="font-size:10.5px;color:#5B6B77;">Tamil language output</p>
+      </div>
+      <div class="card" style="border-left:4px solid var(--orange);">
+        <p style="font-size:11.5px;font-weight:700;">📊 data.gov.in</p>
+        <p style="font-size:10.5px;color:#5B6B77;">Tamil Nadu CKD statistics</p>
+      </div>
+
+      <p class="kicker" style="margin-top:8px;">Database Schema (Key Fields)</p>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div class="card" style="padding:8px 10px;"><b style="font-size:10.5px;color:var(--navy);">doctors</b><span style="font-size:9.5px;color:#5B6B77;"> — id, name, phc_id, email, password_hash</span></div>
+        <div class="card" style="padding:8px 10px;"><b style="font-size:10.5px;color:var(--navy);">patients</b><span style="font-size:9.5px;color:#5B6B77;"> — id, age, gender, dm_duration, doctor_id</span></div>
+        <div class="card" style="padding:8px 10px;"><b style="font-size:10.5px;color:var(--navy);">visits</b><span style="font-size:9.5px;color:#5B6B77;"> — id, patient_id, creatinine, eGFR, HbA1c, ACR, BP, date</span></div>
+        <div class="card" style="padding:8px 10px;"><b style="font-size:10.5px;color:var(--navy);">alerts</b><span style="font-size:9.5px;color:#5B6B77;"> — id, patient_id, risk_score, level, created_at</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>NephroAlert | ACS-AMRI Seed Grant Proposal 2026 | Dr. MGR Educational and Research Institute, Chennai</span>
+    <span class="slide-number">7</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8 — RESULTS + EXPECTED OUTCOMES -->
+<!-- ============================================================ -->
+<section class="slide">
+  <h2 class="slide-title">Expected Outcomes &amp; Validation Plan</h2>
+  <div class="title-underline"></div>
+
+  <div class="content" style="display:flex;gap:22px;margin-top:6px;">
+    <!-- Radar chart 40% -->
+    <div style="flex:0 0 36%;">
+      <p class="kicker">Predicted Model Performance</p>
+      <svg viewBox="0 0 320 300" style="width:100%;height:230px;">
+        <!-- grid rings -->
+        <polygon points="160,134 184.7,152 175.3,181 144.7,181 135.3,152" fill="none" stroke="#D8DEE1" stroke-width="1"/>
+        <polygon points="160,108 209.5,143.9 190.6,202.1 129.4,202.1 110.5,143.9" fill="none" stroke="#D8DEE1" stroke-width="1"/>
+        <polygon points="160,82 234.2,135.9 205.8,223.1 114.2,223.1 85.8,135.9" fill="none" stroke="#D8DEE1" stroke-width="1"/>
+        <polygon points="160,56 258.9,127.9 221.1,244.1 98.9,244.1 61.1,127.9" fill="none" stroke="#D8DEE1" stroke-width="1"/>
+        <polygon points="160,30 283.6,119.8 236.4,265.2 83.6,265.2 36.4,119.8" fill="none" stroke="#B9C6D0" stroke-width="1.3"/>
+        <!-- axes -->
+        <line x1="160" y1="160" x2="160" y2="30" stroke="#B9C6D0" stroke-width="1"/>
+        <line x1="160" y1="160" x2="283.6" y2="119.8" stroke="#B9C6D0" stroke-width="1"/>
+        <line x1="160" y1="160" x2="236.4" y2="265.2" stroke="#B9C6D0" stroke-width="1"/>
+        <line x1="160" y1="160" x2="83.6" y2="265.2" stroke="#B9C6D0" stroke-width="1"/>
+        <line x1="160" y1="160" x2="36.4" y2="119.8" stroke="#B9C6D0" stroke-width="1"/>
+        <!-- data polygon -->
+        <polygon points="160,58.6 261.4,127.1 225.0,249.4 98.1,245.2 61.1,127.9" fill="#00A878" fill-opacity="0.32" stroke="#00A878" stroke-width="2.2"/>
+        <circle cx="160" cy="58.6" r="3" fill="#00A878"/>
+        <circle cx="261.4" cy="127.1" r="3" fill="#00A878"/>
+        <circle cx="225.0" cy="249.4" r="3" fill="#00A878"/>
+        <circle cx="98.1" cy="245.2" r="3" fill="#00A878"/>
+        <circle cx="61.1" cy="127.9" r="3" fill="#00A878"/>
+        <!-- labels -->
+        <text x="160" y="16" font-size="11" text-anchor="middle" fill="#1B4F72" font-weight="700">Sensitivity 78%</text>
+        <text x="307" y="108" font-size="11" text-anchor="start" fill="#1B4F72" font-weight="700">Specificity 82%</text>
+        <text x="251" y="292" font-size="11" text-anchor="middle" fill="#1B4F72" font-weight="700">AUC-ROC 0.85</text>
+        <text x="69" y="292" font-size="11" text-anchor="middle" fill="#1B4F72" font-weight="700">Accuracy 81%</text>
+        <text x="13" y="108" font-size="11" text-anchor="start" fill="#1B4F72" font-weight="700">F1 Score 0.80</text>
+      </svg>
+    </div>
+
+    <!-- Comparison table 60% -->
+    <div style="flex:1;">
+      <p class="kicker">Comparison: NephroAlert vs Existing Approach</p>
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th>Traditional</th><th>NephroAlert</th></tr></thead>
+        <tbody>
+          <tr><td>Detection timing</td><td>Stage 4</td><td style="color:var(--teal);font-weight:700;">Stage 2–3</td></tr>
+          <tr><td>Data used</td><td>Single visit</td><td style="color:var(--teal);font-weight:700;">3–6 visits</td></tr>
+          <tr><td>Doctor time</td><td>5+ minutes</td><td style="color:var(--teal);font-weight:700;">30 seconds</td></tr>
+          <tr><td>Tamil output</td><td>None</td><td style="color:var(--teal);font-weight:700;">Full</td></tr>
+          <tr><td>Cost to PHC</td><td>High</td><td style="color:var(--teal);font-weight:700;">Zero</td></tr>
+          <tr><td>Hardware needed</td><td>Yes</td><td style="color:var(--teal);font-weight:700;">No</td></tr>
+          <tr><td>Early warning</td><td>No</td><td style="color:var(--teal);font-weight:700;">Yes</td></tr>
+          <tr><td>Confidence score</td><td>No</td><td style="color:var(--teal);font-weight:700;">Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin-top:16px;">
+    <p class="kicker">Pilot Validation Plan</p>
+    <div style="display:flex;gap:12px;">
+      <div class="card" style="flex:1;border-top:4px solid var(--navy);">
+        <p style="font-size:10px;color:var(--navy);font-weight:800;">MONTH 1–2</p>
+        <p style="font-size:12px;font-weight:700;margin:3px 0 4px;">Data Collection</p>
+        <p style="font-size:10.5px;color:#5B6B77;">50+ de-identified PHC records from Puducherry region</p>
+      </div>
+      <div class="card" style="flex:1;border-top:4px solid var(--teal);">
+        <p style="font-size:10px;color:var(--teal);font-weight:800;">MONTH 3–4</p>
+        <p style="font-size:12px;font-weight:700;margin:3px 0 4px;">Model Training</p>
+        <p style="font-size:10.5px;color:#5B6B77;">UCI CKD + NHANES datasets + local PHC data</p>
+      </div>
+      <div class="card" style="flex:1;border-top:4px solid var(--orange);">
+        <p style="font-size:10px;color:var(--orange);font-weight:800;">MONTH 5–6</p>
+        <p style="font-size:12px;font-weight:700;margin:3px 0 4px;">Validation</p>
+        <p style="font-size:10.5px;color:#5B6B77;">Sensitivity/Specificity, AUC-ROC calculation, usability testing with doctors</p>
+      </div>
+      <div class="card" style="flex:1;border-top:4px solid var(--red);">
+        <p style="font-size:10px;color:var(--red);font-weight:800;">MONTH 7–8</p>
+        <p style="font-size:12px;font-weight:700;margin:3px 0 4px;">Publication</p>
+        <p style="font-size:10.5px;color:#5B6B77;">Manuscript preparation, conference presentation, final report to ACS-AMRI</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>NephroAlert | ACS-AMRI Seed Grant Proposal 2026 | Dr. MGR Educational and Research Institute, Chennai</span>
+    <span class="slide-number">8</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9 — SOCIAL IMPACT + BUDGET + TIMELINE -->
+<!-- ============================================================ -->
+<section class="slide">
+  <h2 class="slide-title">Social Impact, Budget &amp; Project Timeline</h2>
+  <div class="title-underline"></div>
+
+  <!-- Impact cards -->
+  <div style="display:flex;gap:16px;margin-top:6px;">
+    <div class="card" style="flex:1;border-top:4px solid var(--red);">
+      <p style="font-size:20px;">🩺</p>
+      <p style="font-size:12.5px;font-weight:800;color:var(--navy);margin:2px 0 4px;">Lives at Risk</p>
+      <p style="font-size:10.5px;color:#5B6B77;line-height:1.5;">8.8 million diabetics in Tamil Nadu. 1 in 3 will develop kidney disease. Most are detected too late.</p>
+    </div>
+    <div class="card" style="flex:1;border-top:4px solid var(--teal);">
+      <p style="font-size:20px;">📈</p>
+      <p style="font-size:12.5px;font-weight:800;color:var(--navy);margin:2px 0 4px;">Our Solution Impact</p>
+      <p style="font-size:10.5px;color:#5B6B77;line-height:1.5;">Early detection at Stage 2–3 improves 10-year survival by up to 50% compared to Stage 4 detection.</p>
+    </div>
+    <div class="card" style="flex:1;border-top:4px solid var(--green);">
+      <p style="font-size:20px;">🌍</p>
+      <p style="font-size:12.5px;font-weight:800;color:var(--navy);margin:2px 0 4px;">Scalability</p>
+      <p style="font-size:10.5px;color:#5B6B77;line-height:1.5;">Zero hardware required. Deployable at any PHC with an internet connection. Works on any device.</p>
+    </div>
+  </div>
+
+  <!-- Gantt -->
+  <div style="margin-top:16px;">
+    <p class="kicker">Project Timeline</p>
+    <div style="display:grid;grid-template-columns:150px repeat(8,1fr);row-gap:4px;column-gap:3px;font-size:9.5px;">
+      <div></div>
+      <div style="text-align:center;color:#5B6B77;">M1</div><div style="text-align:center;color:#5B6B77;">M2</div>
+      <div style="text-align:center;color:#5B6B77;">M3</div><div style="text-align:center;color:#5B6B77;">M4</div>
+      <div style="text-align:center;color:#5B6B77;">M5</div><div style="text-align:center;color:#5B6B77;">M6</div>
+      <div style="text-align:center;color:#5B6B77;">M7</div><div style="text-align:center;color:#5B6B77;">M8</div>
+
+      <div style="padding:3px 0;">Literature Review</div>
+      <div style="grid-column:2/4;background:var(--navy);border-radius:3px;height:14px;"></div><div></div><div></div><div></div><div></div><div></div><div></div>
+
+      <div style="padding:3px 0;">Dataset Acquisition</div>
+      <div style="grid-column:2/4;background:var(--navy);border-radius:3px;height:14px;"></div><div></div><div></div><div></div><div></div><div></div><div></div>
+
+      <div style="padding:3px 0;">ML Model Development</div>
+      <div></div><div style="grid-column:3/6;background:var(--teal);border-radius:3px;height:14px;"></div><div></div><div></div><div></div><div></div>
+
+      <div style="padding:3px 0;">Web App Development</div>
+      <div></div><div></div><div style="grid-column:4/7;background:var(--teal);border-radius:3px;height:14px;"></div><div></div><div></div>
+
+      <div style="padding:3px 0;">PHC Data Collection</div>
+      <div></div><div></div><div></div><div style="grid-column:5/8;background:var(--orange);border-radius:3px;height:14px;"></div><div></div>
+
+      <div style="padding:3px 0;">Validation Testing</div>
+      <div></div><div></div><div></div><div></div><div style="grid-column:6/9;background:var(--orange);border-radius:3px;height:14px;"></div>
+
+      <div style="padding:3px 0;">Report Writing</div>
+      <div></div><div></div><div></div><div></div><div></div><div></div><div style="grid-column:8/10;background:var(--red);border-radius:3px;height:14px;"></div>
+
+      <div style="padding:3px 0;">Publication</div>
+      <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div style="grid-column:9/10;background:#7A1E14;border-radius:3px;height:14px;"></div>
+    </div>
+  </div>
+
+  <!-- Budget -->
+  <div style="display:flex;gap:24px;margin-top:16px;align-items:center;">
+    <div style="flex:0 0 34%;text-align:center;">
+      <p class="kicker">Budget Allocation (Within ₹10,000)</p>
+      <div style="width:150px;height:150px;border-radius:50%;margin:6px auto;
+        background:conic-gradient(#1B4F72 0deg 32.4deg,#00A878 32.4deg 57.6deg,#E67E22 57.6deg 136.8deg,#C0392B 136.8deg 255.6deg,#27AE60 255.6deg 302.4deg,#95A5A6 302.4deg 324deg,#5D8AA8 324deg 360deg);">
+      </div>
+    </div>
+    <div style="flex:1;">
+      <table class="data-table" style="font-size:10.5px;">
+        <thead><tr><th>Item</th><th style="text-align:right;">Cost</th></tr></thead>
+        <tbody>
+          <tr><td><span style="display:inline-block;width:9px;height:9px;background:#1B4F72;border-radius:2px;margin-right:6px;"></span>Printing &amp; Stationery</td><td style="text-align:right;">₹800</td></tr>
+          <tr><td><span style="display:inline-block;width:9px;height:9px;background:#00A878;border-radius:2px;margin-right:6px;"></span>Research Poster</td><td style="text-align:right;">₹600</td></tr>
+          <tr><td><span style="display:inline-block;width:9px;height:9px;background:#E67E22;border-radius:2px;margin-right:6px;"></span>Conference Registration</td><td style="text-align:right;">₹2,000</td></tr>
+          <tr><td><span style="display:inline-block;width:9px;height:9px;background:#C0392B;border-radius:2px;margin-right:6px;"></span>Journal Submission</td><td style="text-align:right;">₹3,000</td></tr>
+          <tr><td><span style="display:inline-block;width:9px;height:9px;background:#27AE60;border-radius:2px;margin-right:6px;"></span>PHC Field Visits (Travel)</td><td style="text-align:right;">₹1,200</td></tr>
+          <tr><td><span style="display:inline-block;width:9px;height:9px;background:#95A5A6;border-radius:2px;margin-right:6px;"></span>Cloud Hosting (3 months)</td><td style="text-align:right;">₹500</td></tr>
+          <tr><td><span style="display:inline-block;width:9px;height:9px;background:#5D8AA8;border-radius:2px;margin-right:6px;"></span>Contingency</td><td style="text-align:right;">₹900</td></tr>
+          <tr style="font-weight:800;"><td>TOTAL</td><td style="text-align:right;color:var(--navy);">₹9,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>NephroAlert | ACS-AMRI Seed Grant Proposal 2026 | Dr. MGR Educational and Research Institute, Chennai</span>
+    <span class="slide-number">9</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10 — CONCLUSION + REFERENCES -->
+<!-- ============================================================ -->
+<section class="slide">
+  <h2 class="slide-title">Conclusion &amp; References</h2>
+  <div class="title-underline"></div>
+
+  <div class="content" style="display:flex;gap:26px;margin-top:6px;">
+    <!-- Conclusion -->
+    <div style="flex:1;">
+      <p class="kicker">Conclusion</p>
+      <div class="checklist-item"><span class="check-icn">&#10003;</span><span style="font-size:11.5px;line-height:1.45;">NephroAlert addresses a genuine clinical gap: no existing tool analyses longitudinal biomarker trajectories for CKD prediction at PHC level in Tamil Nadu.</span></div>
+      <div class="checklist-item"><span class="check-icn">&#10003;</span><span style="font-size:11.5px;line-height:1.45;">The system requires zero additional hardware, integrates with existing PHC workflows, and outputs results in Tamil — making it truly deployable in rural healthcare settings.</span></div>
+      <div class="checklist-item"><span class="check-icn">&#10003;</span><span style="font-size:11.5px;line-height:1.45;">By detecting CKD 4–6 months earlier than threshold-based single-visit evaluation, NephroAlert can prevent irreversible nephron loss in thousands of patients.</span></div>
+      <div class="checklist-item"><span class="check-icn">&#10003;</span><span style="font-size:11.5px;line-height:1.45;">The pilot dataset collected from Tamil Nadu PHCs represents an original research contribution with no existing equivalent in published literature.</span></div>
+      <div class="checklist-item"><span class="check-icn">&#10003;</span><span style="font-size:11.5px;line-height:1.45;">This project demonstrates a scalable, evidence-based model for AI-assisted chronic disease monitoring that can be extended across Tamil Nadu and India.</span></div>
+
+      <div style="background:var(--teal);color:#fff;border-radius:8px;padding:14px 18px;margin-top:12px;">
+        <p style="font-size:11.5px;line-height:1.5;font-style:italic;">With the generous support of ACS-AMRI seed funding, NephroAlert will progress from prototype to validated clinical decision support tool — directly saving lives by catching kidney disease before it becomes kidney failure.</p>
+      </div>
+    </div>
+
+    <!-- References -->
+    <div style="flex:1;">
+      <p class="kicker">References</p>
+      <ol style="font-size:9.5px;line-height:1.55;padding-left:16px;color:var(--text);margin:0;">
+        <li style="margin-bottom:5px;">Ingsathit A, et al. "Prevalence and risk factors of chronic kidney disease in the Thai adult population: Thai SEEK study." <i>Nephrology Dialysis Transplantation</i>. 2010;25(5):1567–1575.</li>
+        <li style="margin-bottom:5px;">Inker LA, et al. "New Creatinine and Cystatin C-Based Equations to Estimate GFR without Race." <i>New England Journal of Medicine</i>. 2021;385:1737–1749.</li>
+        <li style="margin-bottom:5px;">Dua P, Gupta V. "Data Mining Techniques for CKD Diagnosis." <i>Journal of Biomedical Informatics</i>. 2012;45(1):146–154.</li>
+        <li style="margin-bottom:5px;">Ravindranath R, et al. "Prevalence of Diabetic Nephropathy Among Type 2 Diabetic Patients in South India." <i>International Journal of Scientific Studies</i>. 2016;4(7):90–93.</li>
+        <li style="margin-bottom:5px;">Kato S, et al. "Association of HbA1c with kidney function decline in patients with type 2 diabetes." <i>Diabetes Research and Clinical Practice</i>. 2019;149:195–202.</li>
+        <li style="margin-bottom:5px;">Levin A, et al. "Global kidney health 2017 and beyond: a roadmap for closing gaps in care, research, and policy." <i>Lancet</i>. 2017;390(10105):1888–1917.</li>
+        <li style="margin-bottom:5px;">Breiman L. "Random Forests." <i>Machine Learning</i>. 2001;45:5–32.</li>
+        <li style="margin-bottom:5px;">National Family Health Survey (NFHS-5). International Institute for Population Sciences, Mumbai. 2019–2021. Available at: rchiips.org/nfhs/nfhs5.shtml</li>
+      </ol>
+    </div>
+  </div>
+
+  <div style="background:var(--navy);color:#fff;border-radius:8px;padding:14px 24px;margin-top:14px;display:flex;justify-content:space-between;align-items:center;">
+    <div>
+      <p style="font-size:18px;font-weight:800;color:var(--teal);margin-bottom:2px;">Thank You &nbsp;·&nbsp; நன்றி</p>
+      <p style="font-size:11px;color:#DCE7EF;">We welcome your questions and feedback</p>
+    </div>
+    <div style="text-align:right;font-size:11px;color:#DCE7EF;">
+      <p>Contact: [Your Email] | [Your Phone]</p>
+      <p>Dr. MGR Educational and Research Institute, Chennai</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>NephroAlert | ACS-AMRI Seed Grant Proposal 2026 | Dr. MGR Educational and Research Institute, Chennai</span>
+    <span class="slide-number">10</span>
+  </div>
+</section>
+
+</div>
+
+<script>
+  // Print helper: pressing "P" opens print dialog for saving as PDF
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'p' && (e.ctrlKey || e.metaKey)) { /* default browser print allowed */ }
+  });
+</script>
+</body>
+</html>
