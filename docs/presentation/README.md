@@ -6,29 +6,30 @@ Dr. MGR Educational and Research Institute, Chennai.
 
 ## File
 
-- `NephroAlert_ACS-AMRI_Presentation.html` — the full presentation.
+- `NephroAlert_ACS-AMRI_Presentation.pptx` — the full presentation, as a
+  native, fully editable PowerPoint file (Office Open XML / `.pptx`).
+  Opens directly in Microsoft PowerPoint, Google Slides, LibreOffice
+  Impress, and Keynote (via import).
 
-## How to view it
+## How to view/edit it
 
-The presentation is a single self-contained HTML file (no external images,
-fonts, or scripts required). To view it:
+1. Download `NephroAlert_ACS-AMRI_Presentation.pptx` from this folder.
+2. Open it in PowerPoint (or Google Slides / LibreOffice Impress).
+3. All text, tables, charts, and shapes are native, editable PowerPoint
+   objects — you can change colors, text, fonts, and layout directly like
+   any normal deck.
 
-1. Download `NephroAlert_ACS-AMRI_Presentation.html` from this folder.
-2. Double-click it (or open it) in any modern browser — Chrome, Edge, or
-   Firefox all work well.
+## What's inside
 
-## How to export it as a PDF or PPTX-style deck
-
-1. Open the file in Chrome or Edge.
-2. Press `Ctrl+P` (Windows/Linux) or `Cmd+P` (Mac) to open the print dialog.
-3. Set:
-   - Destination: **Save as PDF**
-   - Layout: **Landscape**
-   - Margins: **None**
-   - Scale: **Fit to page** (or 100%, since slides are already sized for
-     1280×720 / 16:9)
-4. Save. Each of the 10 slides will appear as one page in the resulting PDF,
-   ready to print or present.
+- 10 slides, 16:9 widescreen (13.33" × 7.5")
+- Title slide, abstract, problem statement, literature survey, proposed
+  methodology, core algorithms, system design, expected outcomes, social
+  impact/budget/timeline, and conclusion/references
+- Native PowerPoint tables, a radar chart, a Gantt-style timeline, and a
+  pie chart — all built as real editable shapes, not images
+- Color palette: navy `#1B4F72`, teal `#00A878`, orange `#E67E22`,
+  red `#C0392B`, green `#27AE60`, per the requested design spec
+- Footer text and slide number on every slide
 
 ## Before your final submission
 
@@ -39,4 +40,4 @@ Two placeholders still need to be filled in by hand before submission:
   `[Designation & Department]`
 - **Slide 10 (Conclusion):** `[Your Email]`, `[Your Phone]`
 
-Search for `[` in the HTML file to find every placeholder quickly.
+Open the file in PowerPoint and edit those text boxes directly.
