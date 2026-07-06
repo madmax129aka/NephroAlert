@@ -12,6 +12,8 @@ import PatientDetail from './pages/PatientDetail';
 import VisitNew from './pages/VisitNew';
 import Alerts from './pages/Alerts';
 import Export from './pages/Export';
+import EyeScan from './pages/EyeScan';
+import AdminScreenings from './pages/AdminScreenings';
 
 function App() {
   const { loading } = useAuth();
@@ -32,7 +34,10 @@ function App() {
       <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      
+
+      {/* Stage 1 — public home eye screening tool, no login required */}
+      <Route path="/eye-scan" element={<EyeScan />} />
+
       <Route element={<ProtectedRoute />}>
         <Route element={<AppLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
@@ -42,6 +47,7 @@ function App() {
           <Route path="/patients/:id/visit/new" element={<VisitNew />} />
           <Route path="/alerts" element={<Alerts />} />
           <Route path="/export" element={<Export />} />
+          <Route path="/admin-screenings" element={<AdminScreenings />} />
         </Route>
       </Route>
     </Routes>

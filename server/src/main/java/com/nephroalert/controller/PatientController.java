@@ -4,6 +4,7 @@ import com.nephroalert.dto.*;
 import com.nephroalert.entity.*;
 import com.nephroalert.repository.*;
 import com.nephroalert.service.PredictionService;
+import com.nephroalert.service.Stage1ScoringService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -24,13 +26,16 @@ public class PatientController {
     private final VisitRepository visitRepository;
     private final AlertRepository alertRepository;
     private final PredictionService predictionService;
+    private final Stage1ScoringService stage1ScoringService;
 
     public PatientController(PatientRepository patientRepository, VisitRepository visitRepository,
-                             AlertRepository alertRepository, PredictionService predictionService) {
+                             AlertRepository alertRepository, PredictionService predictionService,
+                             Stage1ScoringService stage1ScoringService) {
         this.patientRepository = patientRepository;
         this.visitRepository = visitRepository;
         this.alertRepository = alertRepository;
         this.predictionService = predictionService;
+        this.stage1ScoringService = stage1ScoringService;
     }
 
     private Long getDoctorId(Authentication auth) {
@@ -222,5 +227,48 @@ public class PatientController {
         }
         List<Visit> visits = visitRepository.findByPatientIdOrderByVisitDateAsc(id);
         return ResponseEntity.ok(visits);
+    }
+
+    // ==========================================================
+    // Stage 1 — Physical Signs (recorded by doctor at PHC)
+    // PUT /api/patients/:id/physical-signs (auth required)
+    // ADDITIVE ONLY — does not touch Stage 2 blood test logic.
+    // ==========================================================
+    @PutMapping("/{id}/physical-signs")
+    @Transactional
+    public ResponseEntity<?> updatePhysicalSigns(@PathVariable Long id,
+                                                  @RequestBody PhysicalSignsRequest request,
+                                                  Authentication auth) {
+        Long doctorId = getDoctorId(auth);
+        Optional<Patient> patientOpt = patientRepository.findByIdAndDoctorId(id, doctorId);
+        if (patientOpt.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "Patient not found"));
+        }
+
+        Patient patient = patientOpt.get();
+
+        if (request.getConjunctivalPallor() != null) {
+            patient.setConjunctivalPallor(Patient.ConjunctivalPallor.valueOf(request.getConjunctivalPallor()));
+        }
+        int pallourPoints = request.getPallourPoints() != null ? request.getPallourPoints() : 0;
+        int symptomPoints = request.getSymptomPoints() != null ? request.getSymptomPoints() : 0;
+
+        patient.setPallourPoints(pallourPoints);
+        if (request.getPerioribitalOedema() != null) patient.setPerioribitalOedema(request.getPerioribitalOedema());
+        if (request.getOedemaPittingAnkle() != null) patient.setOedemaPittingAnkle(request.getOedemaPittingAnkle());
+        if (request.getFoamyUrine() != null) patient.setFoamyUrine(request.getFoamyUrine());
+        if (request.getRestlessLegs() != null) patient.setRestlessLegs(request.getRestlessLegs());
+        if (request.getNocturia() != null) patient.setNocturia(request.getNocturia());
+        if (request.getFatigue() != null) patient.setFatigue(request.getFatigue());
+        patient.setSymptomPoints(symptomPoints);
+
+        int stage1Score = stage1ScoringService.calculateStage1Score(pallourPoints, symptomPoints);
+        String stage1Level = stage1ScoringService.getStage1Level(stage1Score);
+        patient.setStage1Score(stage1Score);
+        patient.setStage1Level(stage1Level);
+        patient.setStage1RecordedAt(LocalDateTime.now());
+
+        patient = patientRepository.save(patient);
+        return ResponseEntity.ok(patient);
     }
 }

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,21 @@ public class DashboardResponse {
     private long activeAlerts;
     private List<AlertSummary> recentAlerts;
     private List<Object> recentPatients;
+
+    // Stage 1 — Home screening additions (additive only)
+    private long homeScreeningsToday;
+    private List<PendingFollowUp> pendingFollowUps;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PendingFollowUp {
+        private String screeningId;
+        private LocalDateTime createdAt;
+        private Integer stage1Score;
+        private String stage1Level;
+    }
 
     @Data
     @Builder
